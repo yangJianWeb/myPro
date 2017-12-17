@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title></title>
+		
+		<style>
+			.test{
+				width: 100px;
+				height: 100px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div class="test"></div>
+		<input type="button" value="click" id="btn" />
+	</body>
+	<script src="./js/2.1.1-jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		
+		$('#btn').click(function(){
+			$('.test').width('1000')
+				window.requestAnimationFrame(function(){
+				$('.test').width('1000')
+			});
+		})
+	</script>
+</html>

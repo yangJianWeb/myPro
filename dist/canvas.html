@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #drawing{
+            /*width:200px;*/
+            /*height: 200px;*/
+            border:1px solid red;
+        }
+        .showImg img{
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<canvas id="drawing" height="500" width="500">
+</canvas>
+
+<div class="showImg">
+    <img src="./img/dd.jpg" alt="" id="img">
+</div>
+
+</body>
+<script src="./js/2.1.1-jquery.min.js"></script>
+<script>
+
+    function drawCancas(){
+        var drawing = $('#drawing')[0];
+        if(drawing.getContext){
+            var image = document.images[0];
+            var context = drawing.getContext('2d');
+            context.drawImage(image,0,0)
+          context.fillStyle = '#ff0000';
+            context.fillRect(10,10,50,50);
+
+            context.globalAlpha = 0.5;
+            context.fillStyle = 'rgba(0,0,255,1)';
+            context.fillRect(30,30,50,50)
+
+            context.globalCompositeOperation = 'lighter'
+            context.globalAlpha = 0
+
+//            $('#img').attr('src', dataUrl)
+        }
+    }
+
+    function init(){
+        var img = new Image();
+        img.onload = img.onerror = function(res){
+            debugger
+            alert('done')
+        }
+
+        img.src = 'http://img1.imgtn.bdimg.com/it/u=594559231,2167829292&fm=27&gp=0.jpg'
+    }
+
+    init();
+
+    drawCancas();
+
+</script>
+</html>

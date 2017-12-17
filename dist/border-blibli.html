@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>纯css3闪烁动画</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <style>
+        .selectshake{ border:1px solid #d00; background:#ffe9e8; color:#d00;}
+    </style>
+</head>
+<body>
+    <p>js边框闪烁</p>
+    <input type="text" id="keytxt" value="" />
+    </body>
+
+<script>
+
+
+    $('#keytxt').bind('mousewheel', function(e,delta){
+        console.log(e.originalEvent.wheelDelta)
+    })
+
+
+
+</script>
+</html>

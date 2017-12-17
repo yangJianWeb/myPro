@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>drag</title>
+		<style>
+			
+			.container{
+				position: relative;
+				margin: 100px;
+				
+				width: 500px;
+				height: 500px;
+				background-color: pink;
+			}
+			.box{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		
+		
+		<div class="container">
+			<div class="box">
+		
+			</div>
+		</div>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script>
+		
+		var x0 = null;
+		var y0 = null;
+		var top0 = null;
+		var left0 = null;
+		var dragging = $('.box')[0];
+		var box = $('.container')[0];
+		var dragBox = $('.box')[0];
+		$('.box').on('mousedown', function(e){
+			x0 = e.pageX;
+			y0 = e.pageY;
+			top0 = $(e.target).css('top')
+			left0 = $(e.target).css('left')
+			
+		}).on('mousemove', function(e){
+			var dx = e.pageX - x0;
+			var dy = e.pageY - y0;
+//			var x1 = parseInt(left0) + dx + 'px';
+//			var y1 = parseInt(top0) + dy + 'px';
+			 dragging.style.left = (event.clientX - box.offsetLeft - dragBox.offsetWidth/2) + "px";
+             dragging.style.top = (event.clientY - box.offsetTop  - dragBox.offsetHeight/2 ) + "px";
+			if(x0 && y0){
+//				console.log([x1,y1])
+//					$(this).css({
+//					top:y1,
+//					left:x1
+//				});
+				
+//				this.style.left=parseInt(left0) + dx + 'px';
+//				this.style.top=parseInt(top0) + dy + 'px';
+			}
+		}).on('mouseup', function(e){
+			console.log('mouseup')
+			x0 = null;
+			y0 = null;
+			top0 = null;
+			left0 = null;
+		});
+	</script>
+</html>

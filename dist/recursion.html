@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+
+</body>
+
+
+<script>
+
+   var nodes = {
+       nodeName:'node_0',
+       nodeValue:'00',
+       children:[
+           {
+               nodeName:'node1_1',
+               nodeValue:'11',
+               children:[{
+                   nodeName:'node2_1'
+               },
+                   {
+                       nodeName:'node2_2'
+                   }]
+           },
+           {
+               nodeName:'node1_2',
+               nodeValue:'12'
+           }
+       ]
+   };
+
+
+   function recursion(node){
+
+       if(node.children){
+           console.log(node.nodeName)
+           for(var i = 0; i < node.children.length; i ++){
+               recursion( (node.children[i]) )
+           }
+       }else {
+           return console.log(node.nodeName)
+       }
+
+   }
+
+   var obj = recursion(nodes);
+
+</script>
+</html>

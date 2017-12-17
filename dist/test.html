@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title></title>
+		<style>
+			*{
+				margin:0 ;
+			}
+			img{
+				width: 100px;
+				height: 100px;
+				padding: 10px;
+				border: 1px solid red;
+				margin: 10px;
+			}
+			span{
+				color: red;
+				border-style:solid;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="test">
+
+			<img src="./img/dd.jpg" alt="" />
+			<span>1212232</span>
+		</div>
+		<div class="test no-img"></div>
+	</body>
+	<script src="./js/2.1.1-jquery.min.js"></script>
+	<script type="text/javascript">
+			$('.test').on('click', function(e){
+				console.log(e.originalEvent.layerX, e.originalEvent.layerY)
+			})
+	</script>
+</html>

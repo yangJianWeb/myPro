@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/2.1.1-jquery.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+        }
+        .box{
+            width: 100px;
+            height:100px;
+        }
+        .box a{
+            display: block;
+            float: left;
+            height: 100px;
+            width: 100px;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .box img{
+            width: 100px;
+            height: 100px;
+        }
+        .box a div.over{
+            color: #ffffff;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top:100px;
+            left:0;
+            background-color: #009999;
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+            line-height: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <a href="javascript:;">
+            <img src="./img/dd.jpg" alt="">
+            <div class="over">遮罩</div>
+        </a>
+    </div>
+</body>
+
+<script>
+        function countMouseDir(obj, ev){
+            var w = obj.width();
+            var h = obj.height();
+            var direction = null;
+            //就是那鼠标点击坐标.
+
+            // (x,y)是obj左上角的那一点距离document的左上角的那一点的坐标.
+            //obj.offset().left + (w/2)  (obj.offset().top + (h/2)) obj的中心
+            var x = ev.pageX - (obj.offset().left + (w/2));  // 点击的点和中心 代尔塔x之差
+            var y = ev.pageY - (obj.offset().top + (h/2));   // 点击的点和中心 代尔塔y之差
+
+            var angle = Math.atan2(y,x)*(180/Math.PI);
+
+            //比较的是 中心 和点击的点
+            //left,bottom,right,top定义的方向是相对于 一个矩形的对角线来定义的.
+            if(angle > 135 || angle < -135){
+                direction = 'left'
+            }else if(angle > 45){
+                direction = 'bottom'
+            }else if(angle > -45){
+                direction = 'right'
+            }else{
+                direction = 'top'
+            }
+            console.log(direction)
+            return direction;
+        }
+
+        $('.box').mouseenter(function(e){
+            e.stopPropagation()
+            var dire = countMouseDir($(this), e);
+            switch(dire){
+                case 'left':
+                    $('.over').css({
+                        left:'-100px',
+                         top:0
+                    });
+                    break
+                case 'right':
+                    $('.over').css({
+                        left:'100px',
+                        top:0
+                    });
+                    break
+                case 'top':
+                    $('.over').css({
+                        left:0,
+                        top:'-100px'
+                    });
+                    break
+                case 'bottom':
+                    $('.over').css({
+                        left:0,
+                        top:'100px'
+                    });
+                    break
+            }
+
+            $(this).find('.over').stop().animate({
+                left:0,
+                top:0
+            },500)
+        })
+
+    $('.box').mouseleave(function(e){
+
+        var dire = countMouseDir($(this), e);
+        switch(dire){
+            case 'left':
+                $('.over').animate({
+                    left:'-100px',
+                    top:0
+                });
+                break
+            case 'right':
+                $('.over').animate({
+                    left:'100px',
+                    top:0
+                });
+                break
+            case 'top':
+                $('.over').animate({
+                    left:0,
+                    top:'-100px'
+                });
+                break
+            case 'bottom':
+                $('.over').animate({
+                    left:0,
+                    top:'100px'
+                });
+                break
+        }
+
+    })
+
+</script>
+</html>
