@@ -8,23 +8,17 @@
 				height: 300px;
 				background-color: pink;
 			}
-			.base64{
-				overflow: auto;
-			}
 		</style>
 	</head>
 	<body>
 		
 		<div class="container">
 			<input type="file" / class="myFile" multiple="true">
-			<div>
-				<p>所选中图片的base64编码如下:</p>
-				<p class="base64"></p>
-			</div>
+			<p class="text"></p>
 		</div>
 		<img src="" alt="123"  class="img"/>
 	</body>
-	<script src="./js/2.1.1-jquery.min.js"></script>
+	<script src="../js/2.1.1-jquery.min.js"></script>
 	<script>
 		$('.myFile').on('change', function(e){
 			var files = this.files;
@@ -36,9 +30,8 @@
 				var html = '';
 				console.log(reader.result)
 				$('.img').attr('src',reader.result)
-				$('.base64').text(reader.result);
 			}
-			
+			console.log(files)
 		})
 		
 		$('.container')
@@ -61,7 +54,7 @@
 				var html = '';
 				console.log(reader.result)
 				//$('.img').attr('src',reader.result)
-				$('.base64').text(reader.result);
+				$('.text').text(reader.result)
 			}
 			
 			console.log(files)
