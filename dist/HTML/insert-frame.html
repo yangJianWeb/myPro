@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #frame{
+            width: 300px;
+            height: 300px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div>我是一个被内嵌的iframe</div>
+    <!--<iframe src="inner-inner-inner.html" frameborder="0" id="frame"></iframe>-->
+</body>
+
+<script>
+    //我是在内嵌iframe insert-frame.html中设置的
+    window.localStorage.setItem('localSession-key','localSession-value-我是在内嵌iframe insert-frame.html中设置的')
+    window.sessionStorage.setItem('localSession-key','localSession-value-我是在内嵌iframe insert-frame.html中设置的')
+</script>
+</html>

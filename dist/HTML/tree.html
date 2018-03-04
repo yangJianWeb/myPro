@@ -9,9 +9,10 @@
 			.tree-container{
 				display: flex;
 				justify-content: center;
-				width: 1200px;
+				width: 1300px;
 				height: 600px;
 				overflow: auto;
+				margin-top: 50px;
 			}
 			.child-node-wrap .node-group{
 				display: table-cell;
@@ -66,12 +67,27 @@
 				margin: 0;
 				border-bottom: none;
 			}
+			.fr{
+				float: right;
+			}
+			.drag-box{
+				background: #a6d5ec;
+				width: 180px;
+				height: 100px;
+				line-height: 100px;
+				text-align: center;
+				margin: 100px 100px 0 0;
+			}
+			.entering-node{
+				border: 1px dashed red;
+			}
 		</style>
 	</head>
 	<body>
-		
 		<!--<i class="fa fa-check-square fa-lg"></i> fa-lg-->
-		
+		<div class="drag-wrap fr">
+			<div class="drag-box" draggable="true">拖动我到左侧区域</div>
+		</div>
 		<div class="tree-container">
 			<div class="node-group">
 				<div class="node-wrap">
@@ -95,7 +111,9 @@
 										<div class="node">3_1</div>
 										<p class="leg"></p>
 									</div>
-									<div class="child-node-wrap"></div>
+									<div class="child-node-wrap">
+
+									</div>
 								</div>
 							</div>
 							<div class="node-group">
@@ -129,27 +147,43 @@
 						</div>
 						<div class="child-node-wrap"></div>
 					</div>
-					<div class="node-group">
-						<div class="node-wrap">
-							<div class="node">1_4</div>
-							<p class="leg"></p>
-						</div>
-						<div class="child-node-wrap"></div>
-					</div>
+					<!--<div class="node-group">-->
+						<!--<div class="node-wrap">-->
+							<!--<div class="node">1_4</div>-->
+							<!--<p class="leg"></p>-->
+						<!--</div>-->
+						<!--<div class="child-node-wrap"></div>-->
+					<!--</div>-->
+					<!--<div class="node-group">-->
+						<!--<div class="node-wrap">-->
+							<!--<div class="node">1_5</div>-->
+							<!--<p class="leg"></p>-->
+						<!--</div>-->
+						<!--<div class="child-node-wrap"></div>-->
+					<!--</div>-->
 				</div>
 			</div>
 			
 		</div>
+
 	</body>
 	<script src="../js/2.1.1-jquery.min.js"></script>
 	<script>
+
+		var $node_html = $(' <div class="node-group"> \
+								<div class="node-wrap">\
+									<div class="node">我是被拖过来的</div>\
+									<p class="leg"></p>\
+								</div>\
+								<div class="child-node-wrap"></div>\
+							</div>')
 		function init(){
 			drawLine();
 		}
 		
 		function drawLine(){
 			var legArr = $('.tree-container').find('.leg');
-			console.log(legArr)
+			//console.log(legArr)
 			legArr.each(function(index,item){
 				var $ele = $(item);
 				var $nodeWrap = $ele.closest('.node-wrap');
@@ -187,6 +221,46 @@
 				
 			});
 		}
+
+		$('.drag-box').on('dragstart',function (e) {
+				// console.log(this)
+            })
+			.on('dragend', function (e) {
+				//console.log(this)
+            })
+
+		$('.node')
+			.on('dragenter', function (e) {
+                event.stopPropagation();
+                event.preventDefault();
+				var $node = $(this);
+				$node.addClass('entering-node')
+        	})
+			.on('dragover', function (e) {
+                event.stopPropagation();
+                event.preventDefault();
+            })
+			.on('dragleave', function (e) {
+                event.stopPropagation();
+                event.preventDefault();
+                var $node = $(this);
+                $node.removeClass('entering-node')
+			})
+			.on('drop', function (e) {
+				event.stopPropagation();
+				event.preventDefault();
+
+				var $node = $(this);
+				var $nodeWrap = $node.closest('.node-wrap');
+				var $nodeChildWrap = $node.closest('.node-group').find('>.child-node-wrap');
+				if($nodeWrap.hasClass('leaf')){
+                    $node.removeClass('entering-node')
+				    alert('我是叶子节点，不能有子节点了')
+					return
+				}
+                $nodeChildWrap.append($node_html)
+                drawLine()
+            })
 		
 		
 		

@@ -1,35 +1,37 @@
 <html>
 	<head>
+		<meta charset="UTF-8">
 		<title></title>
 		<style>
-			*{
-				margin:0 ;
+			.box{
+				width: 200px;
+				height: 50px;
+				background: greenyellow;
+				margin:20px;
 			}
-			img{
-				width: 100px;
-				height: 100px;
-				padding: 10px;
-				border: 1px solid red;
-				margin: 10px;
+			.box1{
+				opacity: 0;
 			}
-			span{
-				color: red;
-				border-style:solid;
+			.box2{
+				visibility: hidden;
+			}
+			.box3{
+				display: none;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="test">
-
-			<img src="../img/dd.jpg" alt="" />
-			<span>1212232</span>
-		</div>
-		<div class="test no-img"></div>
+		<div class="box box">我是一个正常的盒子</div>
+		<div class="box box1">我的opacity设置了0 click me</div>
+		<div class="box box2">我的visibility设置了hidden click me</div>
+		<div class="box box3">我的display设置了none click me</div>
 	</body>
 	<script src="../js/2.1.1-jquery.min.js"></script>
 	<script type="text/javascript">
-			$('.test').on('click', function(e){
-				console.log(e.originalEvent.layerX, e.originalEvent.layerY)
-			})
+		
+		$('.box').click(function () {
+			console.log($(this).text())
+        })
+
 	</script>
 </html>

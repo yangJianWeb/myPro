@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+
+<script>
+
+    var str = '我是在全局作用域中定义的str'
+
+   function foo() {
+       setTimeout(()=> console.log(this.str))
+   ,1000}
+
+   function fn() {
+       setTimeout(function () {
+           console.log(this.str)
+       },1000)
+   }
+
+   foo.call({str:'我是foo函数传入参数的str'})
+    fn.call({str:'我是fn函数传入参数的str'})
+    
+</script>
+
+
+</html>

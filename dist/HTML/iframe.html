@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .frame{
+            width: 500px;
+            height: 800px;
+
+        }
+        .inner-frame{
+            background: #a6d5ec;
+        }
+        #frame1{
+            border: 1px solid red;
+        }
+        #frame2{
+            border: 1px solid blueviolet;
+        }
+        #frame2{
+            border: 1px solid royalblue;
+        }
+
+    </style>
+</head>
+<body>
+    <div>测试iframe框架</div>
+    <iframe src="./tree.html" frameborder="0" id="frame1" class="frame"></iframe>
+    <iframe src="./flex.html" frameborder="0" id="frame2" class="frame"></iframe>
+    <iframe src="./insert-frame.html" frameborder="0" id="frame3" class="frame inner-frame"></iframe>
+</body>
+<script>
+
+</script>
+</html>

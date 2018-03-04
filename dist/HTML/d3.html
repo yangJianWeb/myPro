@@ -38,22 +38,6 @@
         var rectStep = 35;
 		var rectWidth = 30;
 
-		// var rect = svg.selectAll('rect')
-         //    .data(dataset)
-         //    .enter()
-         //    .append('rect')
-         //    .attr('fill', 'steelblue')
-         //    .attr('x', function(d, i){
-         //        return padding.left + i * rectStep
-         //    })
-         //    .attr('y',function(d,i){
-         //        return height - padding.bottom - d
-         //    })
-         //    .attr('width', rectWidth)
-         //    .attr('height', function(d){
-         //        return d
-         //    })
-
         var text = svg.selectAll('text')
             .data(dataset)
             .enter()
@@ -80,7 +64,10 @@
 			.domain(d3.range(dataset.length))
 			.rangeRoundBands([0, xAxisWidth], 0.2)
 
-
+			console.log(xScale(0))
+			console.log(xScale(1))
+			console.log(xScale(2))
+			xScale.rangeBand().log
 		var yScale = d3.scale.linear()
 			.domain([0,d3.max(dataset)])
 			.range([0, yAxisWidth])
